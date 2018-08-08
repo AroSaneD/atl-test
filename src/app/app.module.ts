@@ -31,6 +31,8 @@ function searchMatcher(
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     // { path: 'search', component: SearchComponent },
+    // todo: implement redux, so the resolvers will have access to game data
+    // todo: implement an intermediate path, that would resolve the attributes from the current data
     { matcher: searchMatcher, component: SearchComponent, resolve: {
       test: SearchAttributeResolver
     } },
