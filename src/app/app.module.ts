@@ -17,20 +17,23 @@ import { SearchListComponent } from './components/search-list/search-list.compon
 import { GameComponent } from './components/game/game.component';
 import { SearchItemComponent } from './components/search-item/search-item.component';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
+import { SearchAttributeResolver } from './services/search-attribute-resolver.service';
 
 function searchMatcher(
     url: UrlSegment[],
     group: UrlSegmentGroup,
     route: Route
 ): UrlMatchResult {
-    const valid = url.length >= 2 && url[url.length - 1].path === 'search';
+    const valid = url.length >= 1 && url[url.length - 1].path === 'search';
     return valid ? {consumed: url} : null;
 }
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     // { path: 'search', component: SearchComponent },
-    { matcher: searchMatcher, component: SearchComponent },
+    { matcher: searchMatcher, component: SearchComponent, resolve: {
+      test: SearchAttributeResolver
+    } },
     { path: '**', component: HomeComponent }
 ];
 
@@ -46,7 +49,7 @@ const appRoutes: Routes = [
         ItemDetailsComponent
     ],
     imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
-    providers: [],
+    providers: [SearchAttributeResolver],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
