@@ -1,0 +1,11 @@
+.games {
+    display: flex;
+    flex-direction: row;
+}
+
+.game {
+    flex-basis: 25%;
+    margin: 10px;
+    background-color: blue;
+    height: 150px;
+}
