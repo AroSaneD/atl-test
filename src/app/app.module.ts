@@ -21,7 +21,7 @@ import { ItemDetailsComponent } from './components/item-details/item-details.com
 import { SearchAttributeResolver } from './services/search-attribute-resolver.service';
 import { ModelState } from './model/model.state';
 
-function searchMatcher(
+export function searchMatcher(
     url: UrlSegment[],
     group: UrlSegmentGroup,
     route: Route
@@ -30,7 +30,7 @@ function searchMatcher(
     return valid ? { consumed: url } : null;
 }
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     // { path: 'search', component: SearchComponent },
     // todo: implement redux, so the resolvers will have access to game data
