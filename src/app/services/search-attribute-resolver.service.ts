@@ -6,20 +6,32 @@ import {
     RouterStateSnapshot
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { take, map } from 'rxjs/operators';
+
+import { UrlRecognitionService } from './url-recognition.service';
+import { Game } from '../model/game';
 
 @Injectable({ providedIn: 'root' })
 export class SearchAttributeResolver implements Resolve<any> {
-    constructor() {}
+    constructor(
+        private urlRecognizer: UrlRecognitionService,
+        private router: Router
+    ) {}
 
     resolve(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<any> {
-        // hardcoded for now, later implement generics
-        // const gameName = route.paramMap.get('game');
-        // const attributes = route.paramMap.keys;
-        return of({ name: 'test' })
-            .pipe(take(1));
+        const gameName = route.paramMap.get('game');
+        this.urlRecognizer
+            .getActiveGameByUrlName(gameName)
+            .pipe(
+                map((game: Game) =>
+                    this.urlRecognizer.getReruoteUrl(gameName, game)
+                )
+            )
+            .subscribe(url => this.router.navigate([url]));
+
+        return null;
     }
 }

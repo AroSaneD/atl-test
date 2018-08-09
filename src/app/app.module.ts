@@ -20,13 +20,16 @@ import { SearchItemComponent } from './components/search-item/search-item.compon
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
 import { SearchAttributeResolver } from './services/search-attribute-resolver.service';
 import { ModelState } from './model/model.state';
+import { MockServerService } from './services/mock-server.service';
+import { SearchAttributeModelResolver } from './services/search-attribute-model-resolver.service';
+import { UrlRecognitionService } from './services/url-recognition.service';
 
 export function searchMatcher(
     url: UrlSegment[],
     group: UrlSegmentGroup,
     route: Route
 ): UrlMatchResult {
-    const valid = url.length >= 1 && url[url.length - 1].path === 'search';
+    const valid = url.length >= 2 && url[url.length - 1].path === 'search';
     return valid ? { consumed: url } : null;
 }
 
@@ -36,11 +39,14 @@ export const appRoutes: Routes = [
     // todo: implement redux, so the resolvers will have access to game data
     // todo: implement an intermediate path, that would resolve the attributes from the current data
     {
+        path: ':game/search',
+        component: SearchComponent,
+        resolve: { t: SearchAttributeResolver }
+    },
+    {
         matcher: searchMatcher,
         component: SearchComponent,
-        resolve: {
-            test: SearchAttributeResolver
-        }
+        resolve: { search: SearchAttributeModelResolver }
     },
     { path: '**', component: HomeComponent }
 ];
@@ -61,7 +67,12 @@ export const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         NgxsModule.forRoot([ModelState])
     ],
-    providers: [SearchAttributeResolver],
+    providers: [
+        SearchAttributeResolver,
+        SearchAttributeModelResolver,
+        MockServerService,
+        UrlRecognitionService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -12,19 +12,18 @@ import { ModelState } from '../../model/model.state';
     styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-    @Select(ModelState) state$: Observable<GameModel>;
+    @Select(ModelState)
+    state$: Observable<GameModel>;
 
-    constructor(private route: ActivatedRoute) {
-
-    }
+    constructor(private route: ActivatedRoute) {}
 
     ngOnInit() {
         this.route.data.subscribe(data => {
-            console.log(data);
+            console.log('Route data: ', data);
         });
 
-        this.state$.subscribe(state => {
-          console.log('State: ', state);
-      });
+        //   this.state$.subscribe(state => {
+        //     console.log('State: ', state);
+        // });
     }
 }
