@@ -1,10 +1,14 @@
 import { Game } from './game';
 
 export class GameModel {
-    [id: string]: Game;
+    games: Map<string, Game> = new Map([]);
+    // [id: string]: Game;
 
     constructor() {
-        this['Rocket league'] = new Game();
-        this['CSGO'] = new Game();
+        this.games = new Map([
+            ...this.games,
+            ['Rocket league', new Game()],
+            ['CSGO', new Game()]
+        ]);
     }
 }
