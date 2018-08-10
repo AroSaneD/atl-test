@@ -24,7 +24,6 @@ export class GameListComponent implements OnInit {
     games: Observable<GameThumbnail[]>;
 
     constructor() {
-        this.games.subscribe(data => console.log('Games: ', data));
     }
 
     ngOnInit() {}

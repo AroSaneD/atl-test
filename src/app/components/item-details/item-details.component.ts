@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { RouterItemDetailsData } from 'model/routerItemDetailsData';
 import { map, filter } from 'rxjs/operators';
+import { MockServerService } from 'services/mock-server.service';
 
 @Component({
     selector: 'app-item-details',
@@ -11,17 +12,15 @@ import { map, filter } from 'rxjs/operators';
     styleUrls: ['./item-details.component.css']
 })
 export class ItemDetailsComponent implements OnInit {
-    offers: Offer[] = [
-        new Offer('joh23', 99, 20, 2.95),
-        new Offer('willer23', 95, 1, 2.5),
-        new Offer('mcree42', 90, 5, 3)
-    ];
-
     itemName: Observable<string>;
     gameName: Observable<string>;
     attributes: Observable<{ name: string; value: string }[]>;
+    offers: Observable<Offer[]>;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private mockServer: MockServerService
+    ) {}
 
     ngOnInit() {
         const data$: Observable<RouterItemDetailsData> = this.activatedRoute.data.pipe(
@@ -39,5 +38,10 @@ export class ItemDetailsComponent implements OnInit {
                 }))
             )
         );
+
+        // always get offers from server, because caching them might
+        // not awlays be a good idea (when an offer goes out of
+        // stock or something)
+        this.offers = this.mockServer.getOffers();
     }
 }

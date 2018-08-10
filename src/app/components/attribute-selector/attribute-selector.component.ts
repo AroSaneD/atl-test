@@ -28,7 +28,6 @@ export class AttributeSelectorComponent implements OnInit {
 
     onChange(value) {
         const emitValue = { ...this.searchField, value: value };
-        console.log('Selected value: ', emitValue);
         this.attrChange.emit(emitValue);
     }
 }

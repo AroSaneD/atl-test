@@ -13,9 +13,5 @@ export class SearchListComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit() {
-        setTimeout(() => {
-            console.log(this.items);
-        }, 500);
-    }
+    ngOnInit() {}
 }

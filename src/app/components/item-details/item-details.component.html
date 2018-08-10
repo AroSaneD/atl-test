@@ -12,7 +12,7 @@
         <td>price</td>
         <td>&nbsp;</td>
       </tr>
-      <tr *ngFor="let offer of offers" app-offer [offer]="offer"></tr>
+      <tr *ngFor="let offer of offers | async" app-offer [offer]="offer"></tr>
     </table>
   </div>
 </div>

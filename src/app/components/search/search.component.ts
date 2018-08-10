@@ -70,30 +70,5 @@ export class SearchComponent implements OnInit {
 
             this.router.navigate([newUrl]);
         });
-
-        // this.searchFields = this.data.searchFields;
-        // this.router.events.subscribe(ev => {
-        //     console.log('event: ', ev);
-        // });
-        // )
-        // .subscribe((fields: SearchField[]) => {
-        //     console.log('Fields: ', fields);
-        // });
-
-        //   this.state$.subscribe(state => {
-        //     console.log('State: ', state);
-        // });
     }
-
-    // onChange(v: any) {
-    //     console.log(this.searchFields);
-    //     const mapped = this.data.searchFields.map(f => [f.name, f.value]) as any;
-    //     const newUrl = this.urlRecognizer.getReruoteUrl(
-    //         this.data.gameName,
-    //         this.data.game,
-    //         new Map<string, string>(mapped)
-    //     );
-
-    //     this.router.navigate([newUrl]);
-    // }
 }

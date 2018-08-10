@@ -33,7 +33,7 @@ td {
     justify-content: center;
 }
 
-input {
+a {
     @extend %flex-center;
     background-color: darkcyan;
     color: white;
@@ -44,4 +44,5 @@ input {
     font-size: 16px;
     width: 150px;
     padding: 4px 10px;
+    cursor: pointer;
 }

@@ -14,6 +14,10 @@ export class SearchItemComponent implements OnInit {
     @Input()
     item: GameItem;
 
+    get itemLink(): string {
+        return this.item ? `/${this.item.id}/detail` : null;
+    }
+
     constructor() {}
 
     ngOnInit() {}
