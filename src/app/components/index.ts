@@ -2,7 +2,6 @@ import { HomeComponent } from './home/home.component';
 import { GameListComponent } from './game-list/game-list.component';
 import { SearchComponent } from './search/search.component';
 import { SearchListComponent } from './search-list/search-list.component';
-import { GameComponent } from './game/game.component';
 import { SearchItemComponent } from './search-item/search-item.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { OfferComponent } from './offer/offer.component';
@@ -17,7 +16,6 @@ export const components = [
     GameListComponent,
     SearchComponent,
     SearchListComponent,
-    GameComponent,
     SearchItemComponent,
     ItemDetailsComponent,
     OfferComponent,
