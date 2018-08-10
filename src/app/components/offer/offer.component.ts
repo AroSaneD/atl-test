@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Offer } from '../../model/offer';
 
 @Component({
-  selector: 'app-offer',
+  // tslint:disable-next-line:component-selector
+  selector: '[app-offer]',
   templateUrl: './offer.component.html',
   styleUrls: ['./offer.component.css']
 })

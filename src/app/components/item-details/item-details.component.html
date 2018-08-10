@@ -1,3 +1,45 @@
-<p>
-  item-details works!
-</p>
+<div class="upper-container">
+  <div class="left-side">
+    <h2 class="title">{{itemName | async}}</h2>
+    <div class="block"></div>
+  </div>
+  <div class="right-side">
+    <table>
+      <tr>
+        <td>&nbsp;</td>
+        <td>star</td>
+        <td>clock</td>
+        <td>$$$</td>
+        <td>cart</td>
+      </tr>
+      <tr *ngFor="let offer of offers" app-offer [offer]="offer"></tr>
+    </table>
+  </div>
+</div>
+<div class="lower-container">
+  <div style="display: flex;">
+    <div>
+      <h3>Trade environment</h3>
+      <div>
+        <strong>Device:</strong>: TBA
+      </div>
+    </div>
+    <div style="margin-left: 20px;">
+      <h3>Item details</h3>
+      <div>
+        <div>
+          <strong>Game:</strong>
+          {{gameName | async}}
+        </div>
+        <div *ngFor="let attr of attributes | async">
+          <strong>{{attr.name}}:</strong>
+          {{attr.value}}
+        </div>
+        <div>
+          <strong>Certification:</strong>
+          None
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

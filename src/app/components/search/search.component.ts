@@ -32,12 +32,11 @@ export class SearchComponent implements OnInit {
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
-        private location: Location,
         private urlRecognizer: UrlRecognitionService
     ) {}
 
     async ngOnInit() {
-        const data$: Observable<RouterSearchData> = await this.activatedRoute.data.pipe(
+        const data$: Observable<RouterSearchData> = this.activatedRoute.data.pipe(
             map((d: any) => d.search),
             filter(d => d)
         );

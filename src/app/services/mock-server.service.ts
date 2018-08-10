@@ -26,6 +26,7 @@ const model = {
         },
         items: {
             'alpha reward wheels': {
+                id: 'rl-alpha-reward-wheels',
                 image_url: 'https://img.com/alpha_reward_wheels',
                 attributes: {
                     rarity: 'exotic',
@@ -33,6 +34,7 @@ const model = {
                 }
             },
             'ninja wheels': {
+                id: 'rl-ninja-wheels',
                 image_url: 'https://img.com/ninja_wheels',
                 attributes: {
                     rarity: 'rare',
@@ -48,6 +50,7 @@ const model = {
         },
         items: {
             'covert knife': {
+                id: 'csgo-covert-knife',
                 image_url: 'https://img.com/covert_knife',
                 attributes: {
                     wear: 'minimal wear'

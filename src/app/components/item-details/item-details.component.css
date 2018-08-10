@@ -1,0 +1,36 @@
+.upper-container {
+    display: flex;
+    height: 250px;
+    border-bottom: 2px solid #ddd;
+}
+
+.left-side,
+.right-side {
+    height: 100%;
+    padding: 5px;
+}
+
+.left-side {
+    flex-basis: 33%;
+}
+
+.right-side {
+    padding-top: 20px;
+    flex-grow: 1;
+}
+
+.block {
+    display: block;
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    margin-top: 10px;
+}
+
+h2 {
+    margin: 0;
+}
+
+.lower-container {
+    clear: both;
+}

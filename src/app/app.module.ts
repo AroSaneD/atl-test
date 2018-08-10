@@ -23,7 +23,8 @@ import {
 import {
     SearchAttributeResolver,
     SearchAttributeModelResolver,
-    services
+    services,
+    ItemDetailsResolverService
 } from 'services';
 
 import { ModelState } from 'store/model.state';
@@ -54,8 +55,8 @@ export const appRoutes: Routes = [
     },
     {
         path: ':item/detail',
-        component: ItemDetailsComponent
-        // todo: resolver
+        component: ItemDetailsComponent,
+        resolve: { details: ItemDetailsResolverService }
     },
     { path: '**', component: HomeComponent }
 ];
