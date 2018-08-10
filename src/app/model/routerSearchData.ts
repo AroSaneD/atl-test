@@ -1,6 +1,8 @@
 import { Game } from './game';
+import { SearchField } from 'model/searchField';
 
 export interface RouterSearchData {
     game: Game;
-    attributes: string[];
+    searchFields: SearchField[];
+    gameName: string;
 }

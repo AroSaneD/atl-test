@@ -1,9 +1,13 @@
 import { State, Action, Store } from '@ngxs/store';
-import { GameModel } from './gameModel';
-import { Game } from './game';
-import { MockServerService } from '../services/mock-server.service';
-import { tap } from 'rxjs/operators';
+
 import { of } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import { MockServerService } from 'services/mock-server.service';
+
+import { GameModel } from 'model/gameModel';
+import { Game } from 'model/game';
+
 
 export class EnsureModel {
     static readonly type = 'EnsureModel';

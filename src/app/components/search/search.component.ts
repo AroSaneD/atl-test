@@ -1,10 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
 
-import { GameModel } from '../../model/gameModel';
-import { ModelState } from '../../model/model.state';
+import { Observable, Subject } from 'rxjs';
+import { map, filter, first, withLatestFrom } from 'rxjs/operators';
+
+import { RouterSearchData } from 'model/routerSearchData';
+import { SearchField } from 'model/searchField';
+import { GameModel } from 'model/gameModel';
+import { Game } from 'model/game';
+
+import { ModelState } from 'store/model.state';
+import { UrlRecognitionService } from 'services/url-recognition.service';
 
 @Component({
     selector: 'app-search',
@@ -15,15 +23,63 @@ export class SearchComponent implements OnInit {
     @Select(ModelState)
     state$: Observable<GameModel>;
 
-    constructor(private route: ActivatedRoute) {}
+    data: RouterSearchData;
+    searchFields: Observable<SearchField[]>;
+    onSearchField = new Subject<SearchField>();
 
-    ngOnInit() {
-        this.route.data.subscribe(data => {
-            console.log('Route data: ', data);
+    constructor(
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
+        private location: Location,
+        private urlRecognizer: UrlRecognitionService
+    ) {}
+
+    async ngOnInit() {
+        const data$: Observable<RouterSearchData> = await this.activatedRoute.data.pipe(
+            map((d: any) => d.search),
+            filter(d => d)
+        );
+        this.searchFields = data$.pipe(map(d => d.searchFields));
+
+        this.data = await data$.pipe(first()).toPromise();
+
+        this.onSearchField.pipe(withLatestFrom(data$)).subscribe(([field, data]) => {
+            let newFields = data.searchFields.filter(f => f.name !== field.name);
+            newFields = [...newFields, field];
+
+            const mapped = newFields.map(f => [f.name, f.value]) as any;
+            const newUrl = this.urlRecognizer.getReruoteUrl(
+                this.data.gameName,
+                this.data.game,
+                new Map<string, string>(mapped)
+            );
+
+            this.router.navigate([newUrl]);
         });
+
+        // this.searchFields = this.data.searchFields;
+        // this.router.events.subscribe(ev => {
+        //     console.log('event: ', ev);
+        // });
+        // )
+        // .subscribe((fields: SearchField[]) => {
+        //     console.log('Fields: ', fields);
+        // });
 
         //   this.state$.subscribe(state => {
         //     console.log('State: ', state);
         // });
     }
+
+    // onChange(v: any) {
+    //     console.log(this.searchFields);
+    //     const mapped = this.data.searchFields.map(f => [f.name, f.value]) as any;
+    //     const newUrl = this.urlRecognizer.getReruoteUrl(
+    //         this.data.gameName,
+    //         this.data.game,
+    //         new Map<string, string>(mapped)
+    //     );
+
+    //     this.router.navigate([newUrl]);
+    // }
 }

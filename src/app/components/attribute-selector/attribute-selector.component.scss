@@ -1,16 +1,17 @@
-.selector{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  color: red;
-  width: 300px;
-
-  label{
-    font-size: 22px;
-  }
-
-  .ng-select{
-    width:200px;
-  }
+.selector {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: #666;
+    width: 300px;
+    margin-top: 10px;
+    label {
+        font-size: 22px;
+        align-self: flex-start;
+    }
+    .ng-select {
+        width: 200px;
+        align-self: flex-end;
+    }
 }

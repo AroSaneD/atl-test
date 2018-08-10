@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Select } from '@ngxs/store';
 
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
-import { Select } from '@ngxs/store';
+import { GameModel } from 'model/gameModel';
+import { Game } from 'model/game';
 
-import { GameModel } from '../model/gameModel';
-import { ModelState } from '../model/model.state';
-import { Game } from '../model/game';
+import { ModelState } from 'store/model.state';
+import { SearchField } from 'model/searchField';
 
 @Injectable({
     providedIn: 'root'
@@ -33,9 +34,15 @@ export class UrlRecognitionService {
         return Object.keys(game.attributes);
     }
 
-    getReruoteUrl(gameName: string, game: Game): string {
+    getReruoteUrl(
+        gameName: string,
+        game: Game,
+        attrValues: Map<string, string> = null
+    ): string {
         const attributes = this.getAttributes(game);
-        const defaultAttributes = attributes.map(a => game.attributes[a][0]);
+        const defaultAttributes = attributes.map(
+            a => (attrValues ? attrValues.get(a) : game.attributes[a][0])
+        );
 
         const rerouteUrl =
             '/' + [gameName, ...defaultAttributes, 'search'].join('/');

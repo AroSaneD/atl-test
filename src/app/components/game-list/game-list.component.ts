@@ -4,10 +4,11 @@ import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
-import { GameModel } from '../../model/gameModel';
-import { ModelState } from '../../model/model.state';
-import { Game } from '../../model/game';
-import { GameThumbnail } from '../../model/gameThumbnail';
+import { GameModel } from 'model/gameModel';
+import { Game } from 'model/game';
+import { GameThumbnail } from 'model/gameThumbnail';
+
+import { ModelState } from 'store/model.state';
 
 @Component({
     selector: 'app-game-list',

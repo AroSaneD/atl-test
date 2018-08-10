@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { EventEmitter } from 'events';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+import { SearchField } from 'model/searchField';
 
 @Component({
     selector: 'app-attribute-selector',
@@ -8,22 +9,18 @@ import { EventEmitter } from 'events';
 })
 export class AttributeSelectorComponent implements OnInit {
     @Input()
-    attributeName: string;
-
-    @Input()
-    currentValue: string;
-
-    @Input()
-    possibleValues: string[];
+    field: SearchField;
 
     @Output()
-    attrChange: EventEmitter = new EventEmitter();
+    attrChange: EventEmitter<SearchField> = new EventEmitter();
 
     constructor() {}
 
     ngOnInit() {}
 
     onChange(value) {
-        console.log('Selected value: ', value);
+        const emitValue = { ...this.field, value: value };
+        console.log('Selected value: ', emitValue);
+        this.attrChange.emit(emitValue);
     }
 }

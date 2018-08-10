@@ -1,4 +1,5 @@
 <div class="selector">
-  <label>{{attributeName}}</label>
-  <ng-select [items]="possibleValues" placeholder="Select value..." [(ngModel)]="currentValue" (change)="onChange($event)"></ng-select>
+  <label>{{field.name}}</label>
+  <ng-select [items]="field.possibleValues" placeholder="Select value..." [(ngModel)]="field.value" (change)="onChange($event)"
+    [clearable]="false"></ng-select>
 </div>

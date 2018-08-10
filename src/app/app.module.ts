@@ -13,19 +13,20 @@ import { NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { GameListComponent } from './components/game-list/game-list.component';
-import { SearchComponent } from './components/search/search.component';
-import { SearchListComponent } from './components/search-list/search-list.component';
-import { GameComponent } from './components/game/game.component';
-import { SearchItemComponent } from './components/search-item/search-item.component';
-import { ItemDetailsComponent } from './components/item-details/item-details.component';
-import { SearchAttributeResolver } from './services/search-attribute-resolver.service';
-import { ModelState } from './model/model.state';
-import { MockServerService } from './services/mock-server.service';
-import { SearchAttributeModelResolver } from './services/search-attribute-model-resolver.service';
-import { UrlRecognitionService } from './services/url-recognition.service';
-import { AttributeSelectorComponent } from './components/attribute-selector/attribute-selector.component';
+import {
+    HomeComponent,
+    SearchComponent,
+    ItemDetailsComponent,
+    components
+} from './components';
+
+import {
+    SearchAttributeResolver,
+    SearchAttributeModelResolver,
+    services
+} from 'services';
+
+import { ModelState } from 'store/model.state';
 
 export function searchMatcher(
     url: UrlSegment[],
@@ -51,21 +52,16 @@ export const appRoutes: Routes = [
         component: SearchComponent,
         resolve: { search: SearchAttributeModelResolver }
     },
+    {
+        path: ':item/detail',
+        component: ItemDetailsComponent
+        // todo: resolver
+    },
     { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        GameListComponent,
-        SearchComponent,
-        SearchListComponent,
-        GameComponent,
-        SearchItemComponent,
-        ItemDetailsComponent,
-        AttributeSelectorComponent
-    ],
+    declarations: [AppComponent, ...components],
     imports: [
         BrowserModule,
         NgSelectModule,
@@ -73,12 +69,7 @@ export const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         NgxsModule.forRoot([ModelState])
     ],
-    providers: [
-        SearchAttributeResolver,
-        SearchAttributeModelResolver,
-        MockServerService,
-        UrlRecognitionService
-    ],
+    providers: [...services],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { EnsureModel } from './model/model.state';
+import { EnsureModel } from 'store/model.state';
 
 @Component({
     selector: 'app-root',

@@ -1,5 +1,7 @@
 <div class="search-container">
-  <div class="fields">hello</div>
+  <div class="fields">
+    <app-attribute-selector *ngFor="let field of searchFields | async" [field]="field" (attrChange)="onSearchField.next($event)"></app-attribute-selector>
+  </div>
   <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia ante nisl, ultricies rutrum nisl consectetur et.
     Phasellus euismod lacus aliquam dui finibus luctus. Donec semper sem aliquam nisl consequat, ut pellentesque quam viverra.
     Mauris porttitor mi ligula, ac volutpat ligula volutpat hendrerit. Proin quis arcu sit amet leo consequat fringilla non
@@ -9,6 +11,6 @@
     purus ac eros pellentesque, id ultricies lacus consectetur. Curabitur scelerisque nunc nec lacinia tincidunt. </div>
   <div class="item-list">
     <!-- <app-game-list></app-game-list> -->
-    <app-attribute-selector [attributeName]="'Test'" [currentValue]="'test1'" [possibleValues]="['test0', 'test1', 'test2' ]"></app-attribute-selector>
+
   </div>
 </div>
