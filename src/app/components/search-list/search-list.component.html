@@ -1,3 +1,8 @@
-<p>
-  search-list works!
-</p>
+<table class="items-table" cellspacing="0">
+  <tr>
+    <th style="width: 100%">Products</th>
+    <th>Delivery time</th>
+    <th>&nbsp;</th>
+  </tr>
+  <tr *ngFor="let item of items" app-search-item [name]="item[0]" [item]="item[1]"></tr>
+</table>

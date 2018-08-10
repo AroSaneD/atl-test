@@ -8,8 +8,16 @@ import { SearchField } from 'model/searchField';
     styleUrls: ['./attribute-selector.component.scss']
 })
 export class AttributeSelectorComponent implements OnInit {
+    public searchField: SearchField;
     @Input()
-    field: SearchField;
+    set field(value: SearchField) {
+        // add an extra option 'any', which essentialy means to ignore the filter
+        if (value) {
+            const extendedPossibleValues = ['any', ...value.possibleValues];
+            const val = { ...value, possibleValues: extendedPossibleValues };
+            this.searchField = val;
+        }
+    }
 
     @Output()
     attrChange: EventEmitter<SearchField> = new EventEmitter();
@@ -19,7 +27,7 @@ export class AttributeSelectorComponent implements OnInit {
     ngOnInit() {}
 
     onChange(value) {
-        const emitValue = { ...this.field, value: value };
+        const emitValue = { ...this.searchField, value: value };
         console.log('Selected value: ', emitValue);
         this.attrChange.emit(emitValue);
     }

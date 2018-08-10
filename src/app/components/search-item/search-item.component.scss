@@ -1,0 +1,47 @@
+%flex-center {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+td {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.title-holder {
+    @extend %flex-center;
+    justify-content: flex-start;
+    margin: 5px;
+    .block {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        margin: 0 10px;
+    }
+    .title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+}
+
+.time {
+    @extend %flex-center;
+    color: #666;
+    margin: 5px;
+    font-size: 18px;
+    justify-content: center;
+}
+
+input {
+    @extend %flex-center;
+    background-color: darkcyan;
+    color: white;
+    border: 0;
+    appearance: none;
+    margin: 5px;
+    justify-content: center;
+    font-size: 16px;
+    width: 150px;
+    padding: 4px 10px;
+}

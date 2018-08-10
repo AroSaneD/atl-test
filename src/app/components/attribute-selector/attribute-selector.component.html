@@ -1,5 +1,5 @@
 <div class="selector">
-  <label>{{field.name}}</label>
-  <ng-select [items]="field.possibleValues" placeholder="Select value..." [(ngModel)]="field.value" (change)="onChange($event)"
+  <label>{{searchField.name}}</label>
+  <ng-select [items]="searchField.possibleValues" placeholder="Select value..." [(ngModel)]="searchField.value" (change)="onChange($event)"
     [clearable]="false"></ng-select>
 </div>

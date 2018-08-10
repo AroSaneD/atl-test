@@ -13,6 +13,7 @@ import { Game } from 'model/game';
 
 import { ModelState } from 'store/model.state';
 import { UrlRecognitionService } from 'services/url-recognition.service';
+import { GameItem } from 'model/gameItem';
 
 @Component({
     selector: 'app-search',
@@ -25,6 +26,7 @@ export class SearchComponent implements OnInit {
 
     data: RouterSearchData;
     searchFields: Observable<SearchField[]>;
+    filteredItems: Observable<[string, GameItem][]>;
     onSearchField = new Subject<SearchField>();
 
     constructor(
@@ -40,6 +42,19 @@ export class SearchComponent implements OnInit {
             filter(d => d)
         );
         this.searchFields = data$.pipe(map(d => d.searchFields));
+        this.filteredItems = data$.pipe(
+            map(d => d.game.items),
+            map(items => Object.entries(items)),
+            withLatestFrom(this.searchFields),
+            map(([entries, fields]) => {
+                const newEntries = entries.filter(([k, v]) => {
+                    const match = SearchField.doesMatchAttributes(v, fields);
+                    return match;
+                });
+                return newEntries;
+            })
+            // map(entries => new Map(entries))
+        );
 
         this.data = await data$.pipe(first()).toPromise();
 

@@ -4,7 +4,7 @@
 }
 
 .fields{
-  height: 200px;
+  height: 125px;
   margin: 20px 40px;
 }
 
@@ -19,5 +19,4 @@
 .item-list{
   margin-top: 20px;
   padding: 20px;
-  background-color: blue;
 }
