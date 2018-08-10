@@ -1,0 +1,23 @@
+.search-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.fields{
+  height: 200px;
+  margin: 20px 40px;
+}
+
+.description{
+  height: 125px;
+  border: 1px solid gray;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-list{
+  margin-top: 20px;
+  padding: 20px;
+  background-color: blue;
+}

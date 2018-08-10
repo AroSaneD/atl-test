@@ -7,6 +7,8 @@ import {
     Route,
     UrlMatchResult
 } from '@angular/router';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 
@@ -23,6 +25,7 @@ import { ModelState } from './model/model.state';
 import { MockServerService } from './services/mock-server.service';
 import { SearchAttributeModelResolver } from './services/search-attribute-model-resolver.service';
 import { UrlRecognitionService } from './services/url-recognition.service';
+import { AttributeSelectorComponent } from './components/attribute-selector/attribute-selector.component';
 
 export function searchMatcher(
     url: UrlSegment[],
@@ -60,10 +63,13 @@ export const appRoutes: Routes = [
         SearchListComponent,
         GameComponent,
         SearchItemComponent,
-        ItemDetailsComponent
+        ItemDetailsComponent,
+        AttributeSelectorComponent
     ],
     imports: [
         BrowserModule,
+        NgSelectModule,
+        FormsModule,
         RouterModule.forRoot(appRoutes),
         NgxsModule.forRoot([ModelState])
     ],
