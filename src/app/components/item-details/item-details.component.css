@@ -34,3 +34,7 @@ h2 {
 .lower-container {
     clear: both;
 }
+
+td {
+    text-align: center;
+}
