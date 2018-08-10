@@ -39,7 +39,7 @@ export const appRoutes: Routes = [
     // todo: implement redux, so the resolvers will have access to game data
     // todo: implement an intermediate path, that would resolve the attributes from the current data
     {
-        path: ':game/search',
+        path: ':game',
         component: SearchComponent,
         resolve: { t: SearchAttributeResolver }
     },

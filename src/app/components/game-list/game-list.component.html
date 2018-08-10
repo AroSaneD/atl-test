@@ -1,5 +1,6 @@
 <div class="games">
   <a *ngFor="let game of (games | async)" class="game"  [routerLink]="game.link" >
-    {{game.name}}
+    <!-- todo: image -->
+    <span>{{game.name}}</span>
   </a>
 </div>

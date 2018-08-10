@@ -7,16 +7,7 @@ import { filter, map } from 'rxjs/operators';
 import { GameModel } from '../../model/gameModel';
 import { ModelState } from '../../model/model.state';
 import { Game } from '../../model/game';
-
-class GameThumbnail {
-    urlName: string;
-    link: string;
-
-    constructor(public name: string, public image: string) {
-        this.urlName = name.replace(' ', '-').toLowerCase();
-        this.link = `/${this.urlName}/search`;
-    }
-}
+import { GameThumbnail } from '../../model/gameThumbnail';
 
 @Component({
     selector: 'app-game-list',

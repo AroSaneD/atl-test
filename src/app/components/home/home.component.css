@@ -4,13 +4,13 @@
 }
 
 .banner{
-  height: 150px;
+  height: 200px;
   border: 2px solid gray;
   margin: 20px 40px;
 }
 
 .description{
-  height: 100px;
+  height: 125px;
   border: 1px solid gray;
   text-align: center;
   overflow: hidden;
