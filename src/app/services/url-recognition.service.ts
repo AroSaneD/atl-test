@@ -41,7 +41,7 @@ export class UrlRecognitionService {
     ): string {
         const attributes = this.getAttributes(game);
         const defaultAttributes = attributes.map(
-            a => (attrValues ? attrValues.get(a) : game.attributes[a][0])
+            a => (attrValues ? attrValues.get(a) : 'any')
         );
 
         const rerouteUrl =
